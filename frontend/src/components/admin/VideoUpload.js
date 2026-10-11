@@ -12,8 +12,9 @@ import {
 import { CloudUpload } from '@mui/icons-material';
 import { styled } from '@mui/material/styles';
 import axios from 'axios';
+import { ADMIN_API_URL } from '../../config/env';
 
-const STREAMING_API = 'http://localhost:3002/api';
+const ADMIN_API = ADMIN_API_URL;
 
 const Input = styled('input')({
   display: 'none',
@@ -94,7 +95,7 @@ export const VideoUpload = () => {
 
     try {
       // First, get pre-signed URLs for both files
-      const urlsResponse = await axios.post(`${STREAMING_API}/admin/videos/upload-urls`, {
+      const urlsResponse = await axios.post(`${ADMIN_API}/videos/upload-urls`, {
         videoFileName: videoFile.name,
         thumbnailFileName: thumbnailFile.name,
       });
@@ -116,7 +117,7 @@ export const VideoUpload = () => {
       });
 
       // Create video record
-      await axios.post(`${STREAMING_API}/admin/videos`, {
+      await axios.post(`${ADMIN_API}/videos`, {
         ...formData,
         s3Key: videoKey,
         thumbnailUrl: thumbnailKey,
