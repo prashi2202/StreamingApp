@@ -49,25 +49,25 @@ the lab completed on 11 October 2026.
 
 ### Kubernetes workloads
 
-  ---------------------------------------------------------------------------
-  Component    Kubernetes              Port Purpose
-               service                      
-  ------------ ------------- -------------- ---------------------------------
-  Frontend     `frontend`                80 React static site served by
-                                            Nginx; external LoadBalancer
+  -------------------------------------------------------------------------
+  Component   Kubernetes             Port Purpose
+              service                     
+  ----------- ------------- ------------- ---------------------------------
+  Frontend    `frontend`               80 React static site served by
+                                          Nginx; external LoadBalancer
 
-  Auth         `auth`                  3001 Authentication and user APIs
+  Auth        `auth`                 3001 Authentication and user APIs
 
-  Streaming    `streaming`             3002 Streaming and video APIs
+  Streaming   `streaming`            3002 Streaming and video APIs
 
-  Admin        `admin`                 3003 Administrative/video-management
-                                            APIs
+  Admin       `admin`                3003 Administrative/video-management
+                                          APIs
 
-  Chat         `chat`                  3004 Chat API and Socket.IO
+  Chat        `chat`                 3004 Chat API and Socket.IO
 
-  MongoDB      `mongo`                27017 Application database with
-                                            persistent storage
-  ---------------------------------------------------------------------------
+  MongoDB     `mongo`               27017 Application database with
+                                          persistent storage
+  -------------------------------------------------------------------------
 
 Backend services and MongoDB use internal Kubernetes `ClusterIP`
 Services. The frontend is exposed through a Kubernetes `LoadBalancer`
@@ -420,41 +420,20 @@ curl -I "$APP_URL/"
 
 ### 8.9 Frontend UI access and screenshot evidence
 
-The StreamFlix landing page was opened successfully in a browser using
-the external load-balancer URL. The browser screenshot showed the
-StreamFlix landing page UI.
+The StreamFlix frontend was accessed successfully through the external
+AWS load balancer. The landing page rendered in the browser, and the
+frontend endpoint returned HTTP `200 OK`.
 
-Add the **actual screenshot captured during the assignment** to the
-repository at:
+**Evidence:** `docs/evidence/01-frontend-browser.png`
 
-``` text
-docs/evidence/01-frontend-browser.png
-```
+![StreamFlix frontend accessed through the AWS load
+balancer](docs/evidence/01-frontend-browser.png)
 
-Once the screenshot has been added, GitHub can display it using:
-
-``` markdown
-![StreamingApp UI accessed through the AWS load balancer](docs/evidence/01-frontend-browser.png)
-```
-
-Capture and save the screenshot: 1. Open the URL printed by
-`echo "$APP_URL"` in your browser. 2. Confirm the StreamFlix landing
-page is visible. 3. Capture the browser window, including the address
-bar to show the public URL. 4. Save it as
-`docs/evidence/01-frontend-browser.png`. 5. Ensure no credentials,
-tokens, or private information are visible.
-
-Only add the Markdown image reference after the real screenshot has been
-placed at that path; do not use a placeholder or claim the image is
-already in the repository.
-
-Recorded frontend HTTP response:
-
-``` text
-HTTP/1.1 200 OK
-Server: nginx/1.27.5
-Content-Type: text/html
-```
+The screenshot records the deployed UI as accessed during verification.
+The browser address bar is included to associate the UI with the public
+load-balancer URL. The load-balancer hostname shown in the screenshot is
+specific to this lab deployment and may no longer resolve after the EKS
+cluster and its load balancer are deleted.
 
 ### 8.10 Known Auth route mismatch
 
